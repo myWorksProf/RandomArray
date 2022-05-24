@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class RandomArray {
@@ -47,21 +48,23 @@ public class RandomArray {
             min = mid;
         }
         int number = max - min;
-        if (random > number) {
-            arrayLength = number;
-        } else {
-            arrayLength = random;
-        }
-        System.out.print("max = " + max + "\nmin = " + min + "\nдиапазон - " + arrayLength);
-        int rnd = rnd(min, max, arrayLength);
+        arrayLength = Math.min(random, number);
+        System.out.println("max = " + max + "\nmin = " + min + "\nдиапазон - " + arrayLength);
+        int[] rnd = rnd(min, max, arrayLength);
+        System.out.println("Массив - " + Arrays.toString(rnd));
     }
 
-    public static int rnd(int min, int max, int arrayLength) {
+    public static int[] rnd(int min, int max, int arrayLength) {
         int[] randomArray = new int[arrayLength];
         max -= min;
         for (int i = 0; i < arrayLength; i++) {
+            max -= min;
+            int mRandom = (int) (Math.random() * ++max) + min;
+            if (mRandom < 0) mRandom = mRandom * -1;
+            randomArray[i] = mRandom;
+            // return randomArray;
 
         }
-        return (int) (Math.random() * ++max) + min;
+        return randomArray;
     }
 }

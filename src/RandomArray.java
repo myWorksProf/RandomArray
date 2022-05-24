@@ -20,29 +20,29 @@ public class RandomArray {
         System.out.print("ведите любое целое конечное число диапазана - ");
         int max = 0;
         int min2 = min + 2;
-        while (min <= min2) {
+        while (max < min2) {
             if (sc.hasNextInt()) {
                 max = sc.nextInt();
-                if (max <= min2) {
+                if (max < min2) {
                     System.out.print("Введенное число должно быть больше " + min + " на 2. Повторите ввод: ");
                 }
-        } else{
-            System.out.print("Вы не ввели целое число. Повторите ввод:");
-            sc.next();
-        }
-    }
-        System.out.print("Задайте количество случайных целых чисел -");
-        int random = 0;
-            if (sc.hasNextInt()) {
-                random = sc.nextInt();
             } else {
                 System.out.print("Вы не ввели целое число. Повторите ввод:");
                 sc.next();
             }
+        }
+        System.out.print("Задайте количество случайных целых чисел -");
+        int random = 0;
+        if (sc.hasNextInt()) {
+            random = sc.nextInt();
+        } else {
+            System.out.print("Вы не ввели целое число. Повторите ввод:");
+            sc.next();
+        }
 
         int arrayLength;
-        if (max < min){
-            int mid=max;
+        if (max < min) {
+            int mid = max;
             max = min;
             min = mid;
         }
@@ -52,11 +52,12 @@ public class RandomArray {
         } else {
             arrayLength = random;
         }
-        System.out.print("max = " + max + "\nmin = "+ min + "\nдиапазон - " + arrayLength);
+        System.out.print("max = " + max + "\nmin = " + min + "\nдиапазон - " + arrayLength);
         int rnd = rnd(min, max, arrayLength);
     }
-    public static int rnd(int min, int max, int arrayLength){
-        int [] randomArray = new int [arrayLength];
+
+    public static int rnd(int min, int max, int arrayLength) {
+        int[] randomArray = new int[arrayLength];
         max -= min;
         for (int i = 0; i < arrayLength; i++) {
 

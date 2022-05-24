@@ -5,6 +5,8 @@ public class RandomArray {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
+
+        // задаем начальное число диапазона
         System.out.print("Ведите любое целое начальное число диапазана - ");
         int min = 0;
         while (min <= 0) {
@@ -18,6 +20,8 @@ public class RandomArray {
                 sc.next();
             }
         }
+
+        // задаем конечное число диапазона
         System.out.print("ведите любое целое конечное число диапазана - ");
         int max = 0;
         int min2 = min + 2;
@@ -32,6 +36,8 @@ public class RandomArray {
                 sc.next();
             }
         }
+
+        // задаем количество случайных целых чисел
         System.out.print("Задайте количество случайных целых чисел -");
         int random = 0;
         if (sc.hasNextInt()) {
@@ -41,29 +47,30 @@ public class RandomArray {
             sc.next();
         }
 
+        // проверяем что бы max не было меньше min, если это так то
+        //  меняем местами min и max
         int arrayLength;
         if (max < min) {
             int mid = max;
             max = min;
             min = mid;
         }
+
         int number = max - min;
         arrayLength = Math.min(random, number);
-        System.out.println("max = " + max + "\nmin = " + min + "\nдиапазон - " + arrayLength);
+        System.out.println("max = " + max + "\nmin = " + min);
+        System.out.println("заданное пользователем число - " + random +
+                "\nвычесленное число - " + number + "\nвычесленная длинна массива - " + arrayLength);
         int[] rnd = rnd(min, max, arrayLength);
         System.out.println("Массив - " + Arrays.toString(rnd));
+        Arrays.stream(rnd).filter(i -> i%2==0).forEach(System.out::println);
     }
 
     public static int[] rnd(int min, int max, int arrayLength) {
         int[] randomArray = new int[arrayLength];
-        max -= min;
         for (int i = 0; i < arrayLength; i++) {
-            max -= min;
-            int mRandom = (int) (Math.random() * ++max) + min;
-            if (mRandom < 0) mRandom = mRandom * -1;
+            int mRandom = (int) (Math.random() * ((max - min) + 1)) + min;
             randomArray[i] = mRandom;
-            // return randomArray;
-
         }
         return randomArray;
     }
